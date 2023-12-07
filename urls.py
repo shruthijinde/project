@@ -1,23 +1,20 @@
-"""
-URL configuration for StudentManagementProject project.
+from django.urls import path
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
+from StudentApp import views
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('',include('StudentApp.urls'))
+urlpatterns =[
+    path('',views.login_fun,name='log'),  #it will redirect to login.html page
+    path('reg',views.register_fun,name='reg'),#it will redirect to register.html page and create a account
+    path('home',views.home_fun,name='home'),
+    path('add_course',views.addcourse_fun,name='add_course'), #rediecting to addcourse.html page and inserting course data into course table
+    path('display_course',views.display_course_fun,name='display_course'), #it will collect the data from course table and send to displaycourse
+    path('update_course/<int:courseid>',views.updatecourse_fun,name='update_course'), #it will update the course data
+    path('delete_course/<int:courseid>',views.deletecourse_fun,name='delete_course'), # it will delete data from the course table
+    path('addstudent',views.addstudent_fun,name='addstudent'),  #it will display addstudent.html file and read the data from file and store it in student table
+    path('displaystudent',views.displaystudent_fun,name='displaystudent'),  #it will display the entire student data
+    path('updatestudent/<int:stud_id>',views.updatestudent_fun,name='updatestudent'),
+    path('deletestudent/<int:stud_id>',views.deletestudent_fun,name='deletestudent'),
+    path('logout',views.logout_fun,name='logout')
 ]
+
+
